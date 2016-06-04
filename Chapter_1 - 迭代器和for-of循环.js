@@ -23,14 +23,14 @@
 // Use constructor
 var arr = new Array();
 for(var i = 0; i < 5; i ++) {
-	arr[i] = i;
+    arr[i] = i;
 }
 console.log(arr);
 
 // Abbreviate style
 var arr = [];
 for(var j = 0; j < 5; j ++) {
-	arr[j] = j;
+    arr[j] = j;
 }
 console.log(arr);
 
@@ -43,30 +43,30 @@ console.log(arr);
 // Normal method
 var len = arr.length;
 for(var i = 0; i < len; i ++) {
-	if(i == 4) {
-		break;
-	}
+    if(i == 4) {
+        break;
+    }
 }
 
 // ES5 method
 arr.forEach(function(val) {
-	console.log(val);
-	// You can not use @break and @return in forEach() 
+    console.log(val);
+    // You can not use @break and @return in forEach() 
 });
 
 // ES6 method
 for(var val of arr) {
-	if(val == 4){
-		break;
-	}
+    if(val == 4){
+        break;
+    }
 }
 
 function instance(arr) {
-	for(var val of arr) {
-		if(val == 4) {
-			return { result: true };
-		}
-	}
+    for(var val of arr) {
+        if(val == 4) {
+            return { result: true };
+        }
+    }
 }
 
 
@@ -79,15 +79,15 @@ function instance(arr) {
 var obj = new Object();
 obj.thisAttrOne = "thisAttrOne";
 obj.thisFuncOne = function() {
-	console.log(arguments.callee);
+    console.log(arguments.callee);
 };
 
 // Abbreviate style
 var obj = {
-	thisAttrOne: "attrOne",
-	thisFuncOne: function() {
-		console.log(arguments.callee);
-	}
+    thisAttrOne: "attrOne",
+    thisFuncOne: function() {
+        console.log(arguments.callee);
+    }
 };
 
 
@@ -98,10 +98,10 @@ var obj = {
 
 // Functional expression style
 var func = function(){
-	this.objAttrOne = "objAttrOne";
-	this.objFuncOne = function(){
-		console.log(arguments.callee);
-	}
+    this.objAttrOne = "objAttrOne";
+    this.objFuncOne = function(){
+        console.log(arguments.callee);
+    }
 };
 func.prototype = {
     constructor: func,  
@@ -113,13 +113,13 @@ func.prototype = {
 
 // Normal style
 function func(){
-	this.objAttrOne = "objAttrOne";
-	this.objFuncOne = function(){
-		console.log(arguments.callee);
-	}
+    this.objAttrOne = "objAttrOne";
+    this.objFuncOne = function(){
+        console.log(arguments.callee);
+    }
 };
 func.prototype.protoFuncOne = function(){
-	console.log(arguments.callee);
+    console.log(arguments.callee);
 };
 func.prototype.protoAttrOne = "protoAttrOne";
 
@@ -131,13 +131,13 @@ func.prototype.protoAttrOne = "protoAttrOne";
 
 // Object
 for(var key in obj){
-	console.log(attr + ": " + obj[key]);
+    console.log(attr + ": " + obj[key]);
 }
 
 // Function object
 var funcObject = new func();
 for(var attr in funcObject){
-	console.log(attr + ": " + obj[key]);
+    console.log(attr + ": " + obj[key]);
 }
 
 // Object.keys
@@ -153,7 +153,7 @@ for (var key of Object.keys(obj)) {
 
 // ES6 method
 for(var char of "STRING"){
-	console.log(char);
+    console.log(char);
 }
 
 
@@ -163,31 +163,31 @@ for(var char of "STRING"){
 
 // For object
 var object = {
-	[Symbol.iterator]: function(){
-		return this;
-	},
-	next: function(){
-		this.iteratorFlag ++;
-		if(this.iteratorFlag > 5){
-			return {
-				done: true, 
-				value: 0
-			};
-		}
+    [Symbol.iterator]: function(){
+        return this;
+    },
+    next: function(){
+        this.iteratorFlag ++;
+        if(this.iteratorFlag > 5){
+            return {
+                done: true, 
+                value: 0
+            };
+        }
 
-		return {
-			done: false, 
-			value: this.iteratorFlag
-		};
-	},
-	toString: function(){
-		return "OBJECT-TOSTRING";
-	},
-	iteratorFlag: 0,
-	objectAttrOne: "objectAttrOne",
-	objectAttrOne: "objectAttrTwo",
-	objectFuncOne: function(args){
-		console.log(arguments.callee);
-	}
+        return {
+            done: false, 
+            value: this.iteratorFlag
+        };
+    },
+    toString: function(){
+        return "OBJECT-TOSTRING";
+    },
+    iteratorFlag: 0,
+    objectAttrOne: "objectAttrOne",
+    objectAttrOne: "objectAttrTwo",
+    objectFuncOne: function(args){
+        console.log(arguments.callee);
+    }
 };
 
