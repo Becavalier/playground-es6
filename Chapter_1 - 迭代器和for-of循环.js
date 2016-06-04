@@ -1,172 +1,193 @@
-;(function(){
+/**
+ * @license
+ * Copyright (C) 2016 YHSPY <yhorg@hotmail.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 
-	// 如何创建数组？
 
-	// 构造
-	var arr = new Array();
-	for(var i = 0; i < 5; i ++){
-		arr[i] = i;
+/**
+ * How to create and initial an array
+ */
+
+// Use constructor
+var arr = new Array();
+for(var i = 0; i < 5; i ++) {
+	arr[i] = i;
+}
+console.log(arr);
+
+// Abbreviate style
+var arr = [];
+for(var j = 0; j < 5; j ++) {
+	arr[j] = j;
+}
+console.log(arr);
+
+
+
+/**
+ * How to ergodic an array
+ */
+
+// Normal method
+var len = arr.length;
+for(var i = 0; i < len; i ++) {
+	if(i == 4) {
+		break;
 	}
-	console.log(arr);
+}
 
-	// 简写
-	var arr = [];
-	for(var j = 0; j < 5; j ++){
-		arr[j] = j;
+// ES5 method
+arr.forEach(function(val) {
+	console.log(val);
+	// You can not use @break and @return in forEach() 
+});
+
+// ES6 method
+for(var val of arr) {
+	if(val == 4){
+		break;
 	}
-	console.log(arr);
+}
 
-
-
-
-
-
-
-
-	// 如何遍历数组?
-
-	// 常用方式
-	var len = arr.length;
-	for(var i = 0; i < len; i ++){
-		console.log(arr[i]);
-		if(i == 4){
-			break;
+function instance(arr) {
+	for(var val of arr) {
+		if(val == 4) {
+			return { result: true };
 		}
 	}
-
-	// ES5
-	arr.forEach(function(val){
-		console.log(val);
-		// 不能使用 return 和 break;
-	});
-
-	// ES6
-	for(var val of arr){
-		console.log(val);
-		if(val == 4){
-			break;
-		}
-	}
+}
 
 
 
+/**
+ * How to create an object
+ */
 
+// Use constructor
+var obj = new Object();
+obj.thisAttrOne = "thisAttrOne";
+obj.thisFuncOne = function() {
+	console.log(arguments.callee);
+};
 
-
-
-
-	// 如何创建对象？
-
-	// 简写
-	var obj = {
-		attr_one:"attr_one",
-		func_one:function(){
-			console.log(arguments.callee);
-		}
-	};
-
-	// 构造
-	var obj = new Object();
-	obj.attr_one = "attr_one";
-	obj.func_one = function(){
-		console.log(arguments.callee);
-	};
-
-
-
-
-
-
-
-
-	// 如何构造方法？
-
-	// 函数式声明
-	var func = function(){
-		console.log(arguments.callee);
-	};
-	func.prototype.method_one = function(){
-		console.log(arguments.callee);
-	};
-	func.prototype.attr_one = "attr_one";
-
-	// 普通声明
-	function func(){
+// Abbreviate style
+var obj = {
+	thisAttrOne: "attrOne",
+	thisFuncOne: function() {
 		console.log(arguments.callee);
 	}
-	func.prototype.method_one = function(){
+};
+
+
+
+/**
+ * How to create a function object
+ */
+
+// Functional expression style
+var func = function(){
+	this.objAttrOne = "objAttrOne";
+	this.objFuncOne = function(){
 		console.log(arguments.callee);
-	};
-	func.prototype.attr_one = "attr_one";
-	
-
-
-
-
-
-
-
-	// 如何遍历对象？
-	for(var attrs in obj){
-		console.log(attrs);
 	}
+};
+func.prototype = {
+    constructor: func,  
+    protoAttrOne: "protoAttrOne",
+    protoFuncOne: function(){
+        console.log(arguments.callee); 
+    }
+}
 
-	var func_obj = new func();
-	for(var attrs in func_obj){
-		console.log(attrs);
+// Normal style
+function func(){
+	this.objAttrOne = "objAttrOne";
+	this.objFuncOne = function(){
+		console.log(arguments.callee);
 	}
+};
+func.prototype.protoFuncOne = function(){
+	console.log(arguments.callee);
+};
+func.prototype.protoAttrOne = "protoAttrOne";
 
 
 
+/**
+ * How to ergodic an object
+ */
+
+// Object
+for(var key in obj){
+	console.log(attr + ": " + obj[key]);
+}
+
+// Function object
+var funcObject = new func();
+for(var attr in funcObject){
+	console.log(attr + ": " + obj[key]);
+}
+
+// Object.keys
+for (var key of Object.keys(obj)) {
+    console.log(key + ": " + obj[key]);
+}
 
 
 
+/**
+ * How to ergodic a string
+ */
+
+// ES6 method
+for(var char of "STRING"){
+	console.log(char);
+}
 
 
-	// 如何遍历字符串？
+/**
+ * How to build an iterator
+ */
 
-	// ES6
-	for(var char of "STRING"){
-		console.log(char);
-	}
-
-
-
-
-
-
-	// ES6 迭代器
-
-	function myFunc(){
-		this.attr_one = "attr_one";
-		this.func_one = function(){
-			console.log("func_one");
-		}
-	}
-	myFunc.prototype.prototype_func_one = function(){
-		console.log("method_one");
-	}
-	myFunc.prototype.prototype_attr_one = "prototype_attr_one";
-
-	// 为 myFunc 实现迭代器
-	myFunc[Symbol.iterator] = function(){
+// For object
+var object = {
+	[Symbol.iterator]: function(){
 		return this;
-	}
+	},
+	next: function(){
+		this.iteratorFlag ++;
+		if(this.iteratorFlag > 5){
+			return {
+				done: true, 
+				value: 0
+			};
+		}
 
-	myFunc.next = function(){
 		return {
-			done: true, 
-			value: 1
+			done: false, 
+			value: this.iteratorFlag
 		};
+	},
+	toString: function(){
+		return "OBJECT-TOSTRING";
+	},
+	iteratorFlag: 0,
+	objectAttrOne: "objectAttrOne",
+	objectAttrOne: "objectAttrTwo",
+	objectFuncOne: function(args){
+		console.log(arguments.callee);
 	}
+};
 
-	var myFuncObj = new myFunc();
-
-	// for-of
-	for(var attr of myFuncObj){
-		console.log(attr);
-	}
-
-
-
-})();
