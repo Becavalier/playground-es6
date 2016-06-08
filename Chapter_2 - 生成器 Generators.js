@@ -92,5 +92,85 @@
         console.log(value);
 
 
+    /**
+     * Add iteration for an object with a generator
+     */
+
+    var obj = {
+        innerAttrOne: "innerAttrOne",
+        innerMethodOne: function() {
+            console.log("innerMethodOne");
+        },
+        objIterator: function*() {
+            yield "This is my iterator!";
+        }
+    }
+
+    // Call my iterator with for-of
+    for(var value of obj.objIterator()) {
+        console.log(value);
+    }
+
+
+    /**
+     * Seperate an array into several independent arraies according to rowLength
+     * Normal
+     */
+
+    function splitIntoRows(icons, rowLength) {
+        var rows = [];
+    for (var i = 0; i < icons.length; i += rowLength) {
+            rows.push(icons.slice(i, i + rowLength));
+        }
+        return rows;
+    }
+
+
+    /**
+     * Seperate an array into several independent arraies according to rowLength
+     * ES6 Generator
+     */
+
+    function* splitIntoRows(icons, rowLength) {
+        for (var i = 0; i < icons.length; i += rowLength) {
+            yield icons.slice(i, i + rowLength);
+        }
+    }   
+
+
+    /**
+     * Write a filter like "Array.prototype.filter"
+     */
+
+    function* filter(test, iterable) {
+        for (var item of iterable) {
+            if (test(item)) // test() is a customed filter method 
+                yield item;
+        }
+    }
+
+
+    /**
+     * Return a value with "yield"
+     */
+
+    var buffer = (function* () {
+        var x;
+        while (true) {
+            x = yield x;
+        }
+    }());
+
+    buffer.next("yield").value === "yield"; // true
+
+
+    /**
+     * How to do an async task with generator?
+     */
+
+    
+
+
+
 
 })(document, window);
