@@ -29,7 +29,37 @@
     String 字符串类型
     Object 对象类型
 
+
+    /**
+     * Use "Symbol" as an attribute name
+     */
+
+    obj[mySymbol] = "ok!";  // Never conflict with other attribute name
+    console.log(obj[mySymbol]);  // ok!
     
+
+    /**
+     * Use description of Symbol
+     */
+
+    var isMoving = Symbol("isMoving");
+    if (element[isMoving]) {
+      smoothAnimations(element);
+    }
+    element[isMoving] = true;   
+
+
+    /**
+     * Deal with Symbol as normal attribute
+     */
+
+    var mySymbol = Symbol();
+    obj = [];
+    obj[mySymbol] = "mySymbol";
+
+    console.log(mySymbol in obj); // True
+    delete obj[mySymbol];
+
 
 
 
