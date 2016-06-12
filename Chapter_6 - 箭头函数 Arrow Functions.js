@@ -19,9 +19,7 @@
 
 
     /**
-     * How to get values from an array?
-     *
-     * Traditional
+     * Do you know why the following code snippet can normally work?
      */
 
     function countdown(n) {
