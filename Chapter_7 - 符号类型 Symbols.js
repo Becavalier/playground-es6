@@ -61,7 +61,59 @@
     delete obj[mySymbol];
 
 
+    /**
+     * Type of Symbol()
+     */
 
+    typeof Symbol()
+    // "symbol"
+
+
+    /**
+     * Symbol() can not be automatically transformed to a string
+     */
+
+    var sym = Symbol("<3");
+    console.log("your symbol is " + sym);
+    // TypeError: can't convert symbol to string
+    console.log(`your symbol is ${sym}`);
+    // TypeError: can't convert symbol to string
+
+    console.log("your symbol is " + String(sym));
+    // your symbol is Symbol(<3)
+    console.log("your symbol is " + sym.toString());
+    // your symbol is Symbol(<3)
+
+
+    /**
+     * Three ways to get a symbol instance
+     */
+
+    var mySymbol = Symbol("mySymbol");
+
+    // This method will access Symbol register table 
+    var mySymbol = Symbol.for("mySymbol");
+
+
+    /**
+     * Some customed cases
+     */
+
+    var mySymbolFunc = Symbol("mySymbol");
+    var mySymbolVari = Symbol("mySymbol");
+
+    var obj = [];
+    obj[mySymbolFunc] = function(){
+        console.log("obj[mySymbol]");
+    }
+    obj[mySymbolVari] = true;
+
+    mySymbolFunc === mySymbolVari;
+
+    mySymbolFunc = Symbol.for("mySymbol");
+    mySymbolVari = Symbol.for("mySymbol");
+
+    mySymbolFunc === mySymbolVari;
 
 
 })(document, window);
