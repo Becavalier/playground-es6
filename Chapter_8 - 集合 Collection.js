@@ -24,11 +24,78 @@
 
     var mySet = new Set("mySet");
 
-    mySet.size;
+    console.log(mySet.size);
+
+    mySet.add("s");
+
 
     // Add element
     mySet.add(" is a bucket.");
-    
+    mySet.has(" is a bucket.");
+    mySet.delete(" is a bucket.");
+
+
+    // Initial a set from an array
+    var myArr = ["m", "y", "S", "e", "t", "t"];
+    // This will remove the repeat element
+    var mySetFromArray = new Set(myArr); 
+
+
+    // Initial a set from an iterator
+    var obj = {
+        flag: 0,
+        [Symbol.iterator]: function() {
+            return this;
+        },
+        next: function() {
+            this.flag ++;
+            if(this.flag < 5) {
+                return {
+                    done: false,
+                    value: {
+                        fruit: "apple"
+                    }
+                }
+            } else {
+                return {
+                    done: true
+                }
+            }
+        }
+    }
+
+    var mySetFromObj = new Set(obj);
+
+
+    // Extra method of a set
+    mySet.clear();
+    mySet.forEach(function(value, value, set){
+        console.log(value);
+        console.log(value);
+        console.log(set);
+    });
+
+
+    /**
+     * Map
+     */
+
+    var myMap = new Map([["fruit", "apple"],["color", "red"],["flavour", "sweet"]]);
+
+    myMap.set("feeling", "great");
+
+    myMap.size();
+    myMap.has("fruit");
+    myMap.get("fruit");
+    myMap.delete("fruit");
+    myMap.clear();
+
+    // Return an iterator
+    var keysIterator = myMap.keys();
+    var valuesIterator = myMap.values();
+    var entriesIterator = myMap.entries();
+
+
 
 
 
