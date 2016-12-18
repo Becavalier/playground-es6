@@ -1,0 +1,19 @@
+{
+  "name": "babel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:merge && npm run build:babel",
+    "build:merge": "browserify index.js > app-es6.js",
+    "build:babel": "babel app-es6.js -o app-es5.js",
+    "show": "browser-sync start --server"
+  },
+  "author": "YHSPY",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "browser-sync": "^2.18.5",
+    "jquery": "^3.1.1"
+  }
+}
